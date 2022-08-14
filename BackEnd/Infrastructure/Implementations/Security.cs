@@ -23,6 +23,7 @@ namespace Infrastructure.Implementations
         }
         public string GenerateWebToken(User UserInfo)
         {
+            //--- create list of claims that contain properties we want to add in token 
             var tokenClaims = new List<Claim>
             {
                 new Claim("UserName", UserInfo.UserName ?? ""),
@@ -30,11 +31,13 @@ namespace Infrastructure.Implementations
                 new Claim(ConstantHelper.RoleHeaderName, ConstantHelper.InstructorRole )
             };
 
+            //--- set hashing algorith for token
             var credentials = new SigningCredentials(
                                 new SymmetricSecurityKey(
                                     Encoding.UTF8.GetBytes(ConstantHelper.JWTKey)
                                     ), ConstantHelper.JWTAlgorithm);
 
+            //--- create token object 
             var token = new JwtSecurityToken(
                     issuer: ConstantHelper.Issuer,
                     audience: ConstantHelper.Audiance,
@@ -46,11 +49,13 @@ namespace Infrastructure.Implementations
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        //--- get user id that we add to token 
         public int GetUserIdFromToken()
         {
             return GetValueFromToken<int>("UserId");
         }
 
+        //--- get value from token based on key that we set
         private T GetValueFromToken<T>(string value)
         {
             string TokenValue = "";

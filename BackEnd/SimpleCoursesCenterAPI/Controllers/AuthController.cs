@@ -15,10 +15,11 @@ namespace API.Controllers
         {
             authService = _authService;
         }
-
+        // --- this action responsible for login functionality
         [HttpPost("login")]
         public IActionResult Login(UserDto user)
         {
+            // --- login method and it's implementation insde auth service 
             var response = authService.AuthenticateLogin(user);
             return Ok(response);
         }

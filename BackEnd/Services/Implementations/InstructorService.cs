@@ -17,6 +17,7 @@ namespace Services.Implementations
             context = _context;
         }
 
+        //--- get instructor id from user id
         public int GetInstructorIdFromUserId(int userId)
         {
             var user = context.Instructors.FirstOrDefault(e => e.UserId == userId);

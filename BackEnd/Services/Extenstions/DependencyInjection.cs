@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services.Extenstions
 {
+    //--- extendtion method to auto inject services that ends with service word
     public static class DependencyInjection
     {
         public static void InjectServiceProjectServices(this IServiceCollection services)

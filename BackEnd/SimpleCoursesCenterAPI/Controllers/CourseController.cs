@@ -10,6 +10,8 @@ namespace SimpleCoursesCenterAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+
+    //--- authorize this controller for only users with instructor role
     [Authorize(ConstantHelper.InstructorRole)]
     public class CourseController : ControllerBase
     {
@@ -23,6 +25,8 @@ namespace SimpleCoursesCenterAPI.Controllers
             instructorService = _instructorService;
             security = _security;
         }
+
+        //--- add new course action
         [HttpPost("AddCourse")]
         public IActionResult AddCourse(CourseDto course)
         {
@@ -30,6 +34,7 @@ namespace SimpleCoursesCenterAPI.Controllers
             return Ok(result);
         }
 
+        //--- edit course action
         [HttpPut("EditCourseData")]
         public IActionResult EditCourseData(CourseDto course)
         {
@@ -37,15 +42,20 @@ namespace SimpleCoursesCenterAPI.Controllers
             return Ok(result);
         }
 
+        //--- get courses related to specific instructor 
         [HttpGet("GetAllCourses")]
         public IActionResult GetCoursesList()
         {
+            //--- get user id first from token
             var userId = security.GetUserIdFromToken();
+            //--- get instructor id from it's user id
             var instructorId = instructorService.GetInstructorIdFromUserId(userId);
+            //--- get all courses for this instructor
             var result = courseService.GetCoursesList(instructorId);
             return Ok(result);
         }
 
+        //--- get specific course
         [HttpGet("GetCourse/{id}")]
         public IActionResult GetCourseById(int id)
         {
@@ -53,6 +63,7 @@ namespace SimpleCoursesCenterAPI.Controllers
             return Ok(result);
         }
 
+        //--- delete specific course
         [HttpDelete("DeleteCourse/{id}")]
         public IActionResult DeleteCourse(int id)
         {

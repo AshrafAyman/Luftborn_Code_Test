@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Configuration
 {
+    //--- static class contain all constant we need
     public class ConstantHelper
     {
         #region JWT Token Variables

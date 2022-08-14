@@ -19,7 +19,7 @@ namespace Services.Implementations
         {
             context = _context;
         }
-
+        //--- add new course method
         public ResponseDto AddNewCourse(CourseDto course)
         {
             var newCourse = new Course()
@@ -40,6 +40,7 @@ namespace Services.Implementations
             return response;
         }
 
+        //--- edit course method
         public ResponseDto EditCourse(CourseDto course)
         {
             var response = new ResponseDto();
@@ -65,6 +66,7 @@ namespace Services.Implementations
             return response;
         }
 
+        //--- get all courses related to specific instructor
         public IEnumerable<CourseDto> GetCoursesList(int instructorId)
         {
             var courses = context.Courses.Include(nameof(Instructor)).Where(e => e.InstructorId == instructorId).Select(a => new CourseDto
@@ -81,6 +83,7 @@ namespace Services.Implementations
             return courses.Count() > 0 ? courses : Enumerable.Empty<CourseDto>();
         }
 
+        //--- get specific course data
         public CourseDto GetCourse(int id)
         {
             var course = context.Courses.Where(e => e.Id == id).Select(a => new CourseDto
@@ -97,6 +100,7 @@ namespace Services.Implementations
             return course ?? new CourseDto();
         }
 
+        //--- delete specific course
         public ResponseDto DeleteCourse(int id)
         {
             var response = new ResponseDto();

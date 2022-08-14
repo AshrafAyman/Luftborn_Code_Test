@@ -25,6 +25,7 @@ namespace Services.Implementations
 
         public ResponseDto AuthenticateLogin(UserDto user)
         {
+            //--- recive user credentials in UserDto and start authenticate it
             var response = new ResponseDto();
             var validUser = GetAuthenticatedUser(user);
             if (validUser == null)
@@ -33,7 +34,7 @@ namespace Services.Implementations
                 response.Message = "Email or password is incorrect";
                 return response;
             }
-
+            //--- create user token if it's authenticated successfully
             string token = security.GenerateWebToken(validUser);
             response.Status = true;
             response.Message = token;
@@ -42,11 +43,12 @@ namespace Services.Implementations
 
         public User? GetAuthenticatedUser(UserDto user)
         {
-
+            //--- get user data based on his email
             var isAuthonticated = context.Users.FirstOrDefault(e => e.Email.ToUpper() == user.Email.ToUpper());
 
             if (isAuthonticated != null)
             {
+                //--- verify hashed password 
                 var isPasswordVarified = new PasswordHasher<User>();
                 var result = isPasswordVarified.VerifyHashedPassword(isAuthonticated, isAuthonticated.Password, user.Password);
                 if (result == PasswordVerificationResult.Success)

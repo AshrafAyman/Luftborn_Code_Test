@@ -9,6 +9,7 @@ namespace Infrastructure.Configuration
 {
     public class Policies
     {
+        //--- create policy for authorization
         public static (AuthorizationPolicy Policy, string PolicyName) InstructorPolicy()
         {
             var Policy = new AuthorizationPolicyBuilder()

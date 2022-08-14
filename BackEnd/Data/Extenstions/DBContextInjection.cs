@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Extenstions
 {
+    //--- extenstion method for database service injection
     public static class DBContextInjection
     {
         public static void InjectDBContext(this IServiceCollection services, string connectionString)

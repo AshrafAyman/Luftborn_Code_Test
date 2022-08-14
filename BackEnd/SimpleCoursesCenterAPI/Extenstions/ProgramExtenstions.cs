@@ -8,15 +8,19 @@ namespace SimpleCoursesCenterAPI.Extenstions
 {
     public static class ProgramExtenstions
     {
+        //--- extenstion method to inject authentication and authorization service
         public static void InjectAuthLayer(this IServiceCollection services)
         {
+            //--- create policy for instructor
             var (instructorPolicy, instructorPolicyName) = Policies.InstructorPolicy();
 
+            //--- add created policy
             services.AddAuthorization(config =>
             {
                 config.AddPolicy(instructorPolicyName, instructorPolicy);
             });
 
+            //--- set configurations for authentication service
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             .AddJwtBearer(options =>
                             {
@@ -36,6 +40,8 @@ namespace SimpleCoursesCenterAPI.Extenstions
                             });
 
         }
+
+        //--- extenstion method to inject MVC service it's responsible for the way JSON object will be serialized 
         public static void InjectMvcLayer(this IServiceCollection services)
         {
             services.AddMvcCore()
@@ -47,6 +53,8 @@ namespace SimpleCoursesCenterAPI.Extenstions
                     opt.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                 });
         }
+
+        //--- extenstion method to inject CORS service
         public static void InjectCorsLayer(this IServiceCollection services)
         {
             services.AddCors(options =>
