@@ -1,0 +1,102 @@
+
+.native-pagination {
+    font-size: 14px;
+    line-height: normal;
+    padding-top: 14px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    
+  
+  }
+
+  .native-pagination .showing-pages-section {
+    display: flex;
+    align-items: baseline;
+    vertical-align: middle;
+    padding-bottom: 0;
+    padding-top: 8px;
+
+    @media screen and (max-width: 768px) {
+      padding-bottom: 12px;
+      padding-top: 0;
+    }
+  }
+
+  
+  .native-pagination .pagination-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  .native-pagination .pagination-section .pagination {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .pagination .page-item {
+    cursor: pointer;
+    margin: 0px 2px;
+  }
+
+  
+  .pagination a.page-link {
+    color: #000 !important;
+    cursor: pointer;
+    border: none !important;
+    box-shadow: none;
+    border-radius: 50%;
+  }
+
+  .pagination a.page-link:hover {
+
+    background: rgba(#25A9E1, .095) !important;
+    color: #25A9E1 !important;
+    border-radius: 50%;
+  }
+
+  .pagination a.page-link.action {
+    color: #25A9E1 !important;
+    cursor: pointer;
+    border: none !important;
+    box-shadow: none;
+    border-radius: 4px;
+  }
+
+  .pagination a.page-link.action:hover {
+
+    background: rgba(#25A9E1, .095) !important;
+    color: #25A9E1 !important;
+    border-radius: 4px;
+  }
+  
+
+  .native-pagination .pagination-section .pagination .page-item.disabled a.page-link.action{
+      cursor: default;
+      color: rgba(#000, 0.45) !important;
+      border: 0px solid transparent;
+      background: transparent;
+      box-shadow: none;
+  }
+
+  
+  .pagination .active a.page-link {
+      cursor: pointer;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 50%;
+      background-color: #25A9E1 !important;
+      box-shadow: none;
+  }

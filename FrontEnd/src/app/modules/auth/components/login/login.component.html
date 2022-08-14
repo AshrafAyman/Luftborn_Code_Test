@@ -1,0 +1,23 @@
+<div class="container login">
+  <div class="row ">
+    <div class="col-lg-3 col-md-6 w-100">
+      <div class="mb-3">
+        <input class="form-control" type="email" placeholder="Please enter your email" [(ngModel)]="user.email" />
+      </div>
+      <!-- Password -->
+      <div class="mb-3">
+        <input class="form-control" type="password" placeholder="Please enter your password" [(ngModel)]="user.password"
+          (keyup.enter)="login()" />
+      </div>
+      <!-- validation msg -->
+      <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="errorMessage">
+        <i class="fa-solid fa-exclamation-triangle me-3"></i>
+        <div>
+          {{errorMessage}}
+        </div>
+      </div>
+      <!-- login button -->
+      <button class="btn btn-primary w-100" (click)="login()">Login</button>
+    </div>
+  </div>
+</div>

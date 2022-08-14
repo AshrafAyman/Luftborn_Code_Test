@@ -1,0 +1,26 @@
+<div class="native-pagination">
+    <!-- showing page -->
+    <div class="showing-pages-section">{{showingPagesTitle}}</div>
+    <!-- pagination -->
+    <div class="pagination-section">
+      <nav *ngIf="collectionSize > 0" aria-label="page navigation example">
+        <ul class="pagination">
+          <li *ngIf="first" class="page-item" [ngClass]="{'disabled':activePage === 1}"
+            (click)="activePage != 1 && onClickPage(1)"><a class="page-link action"> First</a></li>
+          <li *ngIf="previous" class="page-item" [ngClass]="{'disabled':activePage === 1}"
+            (click)="activePage != 1 && onClickPage(activePage - 1)"><a class="page-link action">
+              <i class="fa-solid fa-angle-left fa-fw"></i> Previous</a></li>
+          <li *ngIf="dots && dotsBefore()" class="page-item" (click)="clickBefore()"><a class="page-link">...</a></li>
+          <li class="page-item" [ngClass]="{'active': activePage === item}" *ngFor="let item of pages"
+            (click)="onClickPage(item)"><a class="page-link">{{item}}</a></li>
+          <li *ngIf="dots && dotsAfter()" class="page-item" (click)="clickAfter()"><a class="page-link">...</a></li>
+          <li *ngIf="next" class="page-item" [ngClass]="{'disabled':activePage === totalPages}"
+            (click)="activePage != totalPages && onClickPage(activePage + 1)"><a class="page-link action"> Next
+              <i class="fa-solid fa-angle-right fa-fw"></i></a></li>
+          <li *ngIf="last" class="page-item" [ngClass]="{'disabled':activePage === totalPages}"
+            (click)="activePage != totalPages && onClickPage(totalPages)"><a class="page-link action">
+              Last</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
